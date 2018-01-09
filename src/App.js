@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -30,14 +29,8 @@ class App extends Component {
       }
 
       if (this.state.uppercase_first) {
-        k = k.replace(/\w/, (m) => { return m.toUpperCase() });
+        k = k.replace(/\w/,    (m) => { return m.toUpperCase() });
         k = k.replace(/\W\w/g, (m) => { return m.toUpperCase() });
-        /*k = k
-          .split(/\s+/)
-          .map(w => {
-            return w.charAt(0).toUpperCase() + w.slice(1);
-          })
-          .join(' ');*/
       }
 
       if (this.state.remove_mi) {
@@ -67,7 +60,11 @@ class App extends Component {
           <div>
             <b>Instructions:</b>
             <ol>
-              <li>Copy list of names from other program.</li>
+              <li>Copy list of names from other program.
+                <ul>
+                  <li>Expected format is <b>LastName, FirstName MI.</b> (with a period after the initial)</li>
+                </ul>
+              </li>
               <li>Paste list of names into text box below.</li>
               <li>Choose desired conversion options.</li>
               <li>Press "convert" button.</li>
