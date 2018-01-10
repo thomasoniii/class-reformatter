@@ -2,7 +2,7 @@
   "name": "class-reformatter",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://thomasoniii.github.io/class-reformatter",
+  "homepage": "https://thomasoniii.github.io/class-reformatter",
   "devDependencies": {
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
