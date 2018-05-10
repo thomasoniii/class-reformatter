@@ -12,6 +12,7 @@ class App extends Component {
     capitalize_mc   : true,
     remove_mi       : true,
     reverse_name    : false,
+    sort            : true,
     list            : '',
   }
 
@@ -24,6 +25,9 @@ class App extends Component {
     const kids = this.state.list.split(/\r?\n/);
 
     const converted = kids.map( k => {
+
+      const [lastName, firstNameMI] = k.split(/\s*,\s*/);
+      const [firstName, MI] = firstNameMI.split(/ /);
 
       if (this.state.lowercase_names) {
         k = k.toLowerCase();
@@ -46,8 +50,22 @@ class App extends Component {
         k = k.replace(/([^,]+)\s*,\s*(.+)$/, '$2 $1');
       }
 
+      return {
+        reformatted : k,
+        sort        : [lastName, firstName, MI].join(','),
+      }
+
       return k;
     })
+    .sort( (a,b) => {
+      if ( !this.state.sort ) { return 0 }
+      else {
+             if (a.sort < b.sort) { return -1 }
+        else if (a.sort > b.sort) { return  1 }
+        else                      { return 0  }
+      }
+    })
+    .map( o => o.reformatted )
     .join('\n');
 
     this.setState({ list : converted });
@@ -109,6 +127,10 @@ class App extends Component {
             <div>
               <input type = 'checkbox' id='reverse_name' checked={this.state.reverse_name} onChange={() => this.toggle('reverse_name')} />
               <label htmlFor='reverse_name'>Reformat as "Firstname Lastname"</label>
+            </div>
+            <div>
+              <input type = 'checkbox' id='sort' checked={this.state.sort} onChange={() => this.toggle('sort')} />
+              <label htmlFor='sort'>Sort list by last name, first name, middle initial</label>
             </div>
           </div>
         </div>
