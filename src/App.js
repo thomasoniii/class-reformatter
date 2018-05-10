@@ -9,6 +9,7 @@ class App extends Component {
   state = {
     lowercase_names : true,
     uppercase_first : true,
+    capitalize_mc   : true,
     remove_mi       : true,
     reverse_name    : false,
     list            : '',
@@ -31,6 +32,10 @@ class App extends Component {
       if (this.state.uppercase_first) {
         k = k.replace(/\w/,    (m) => { return m.toUpperCase() });
         k = k.replace(/\W\w/g, (m) => { return m.toUpperCase() });
+      }
+
+      if (this.state.lowercase_names && this.state.uppercase_first && this.state.capitalize_mc) {
+        k = k.replace(/^(Ma?c)(.)/, (m, prefix, letter) => { return prefix + letter.toUpperCase() });
       }
 
       if (this.state.remove_mi) {
@@ -92,6 +97,10 @@ class App extends Component {
             <div>
               <input type = 'checkbox' id='uppercase_first' checked={this.state.uppercase_first} onChange={() => this.toggle('uppercase_first')} />
               <label htmlFor='uppercase_first'>Uppercase first letter</label>
+            </div>
+            <div>
+              <input type = 'checkbox' id='capitalize_mc' checked={this.state.capitalize_mc} onChange={() => this.toggle('capitalize_mc')} />
+              <label htmlFor='capitalize_mc'>Capital letter after Mc/Mac</label>
             </div>
             <div>
               <input type = 'checkbox' id='remove_mi' checked={this.state.remove_mi} onChange={() => this.toggle('remove_mi')} />

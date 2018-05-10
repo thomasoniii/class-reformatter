@@ -2,18 +2,20 @@
   "name": "class-reformatter",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://thomasoniii.github.io/class-reformatter",
+  "ghhomepage": "https://thomasoniii.github.io/class-reformatter",
+  "homepage": "http://prototypesite.net/class-reformatter",
   "devDependencies": {
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "gh-pages": "^1.1.0",
-    "react-scripts": "1.0.11"
+    "react-scripts": "^1.1.1"
   },
   "dependencies": {
+    "ajv": "^6.5.0",
     "bootstrap": "^3.3.7",
     "font-awesome": "^4.7.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
     "react-redux": "^5.0.6",
     "react-tipsy": "^0.6.0",
     "redux": "^3.7.2",
@@ -28,4 +30,3 @@
     "deploy": "gh-pages -d build"
   }
 }
-
