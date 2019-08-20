@@ -14,6 +14,7 @@ class App extends Component {
     reverse_name    : false,
     sort            : true,
     list            : '',
+    reformat_gender : true,
   }
 
   toggle(label) {
@@ -48,6 +49,11 @@ class App extends Component {
 
       if (this.state.reverse_name) {
         k = k.replace(/([^,]+)\s*,\s*(.+)$/, '$2 $1');
+      }
+
+      if (this.state.reformat_gender) {
+        k = k.replace(/ Male$/, ";M")
+        k = k.replace(/ Female/, ";F")
       }
 
       return {
@@ -131,6 +137,10 @@ class App extends Component {
             <div>
               <input type = 'checkbox' id='sort' checked={this.state.sort} onChange={() => this.toggle('sort')} />
               <label htmlFor='sort'>Sort list by last name, first name, middle initial</label>
+            </div>
+            <div>
+              <input type = 'checkbox' id='sort' checked={this.state.reformat_gender} onChange={() => this.toggle('reformat_gender')} />
+              <label htmlFor='reformat_gender'>Reformat " Gender" to ";G"</label>
             </div>
           </div>
         </div>
