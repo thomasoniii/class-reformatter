@@ -27,6 +27,14 @@ class App extends Component {
 
     const converted = kids.map( k => {
 
+      let gender;
+      let m;
+
+      if (m = k.match(/ (Male|Female)$/)) {
+        gender = m[1];
+        k = k.replace(/ (Male|Female)$/, '');
+      }
+
       const [lastName, firstNameMI] = k.split(/\s*,\s*/);
       const [firstName, MI] = firstNameMI.split(/ /);
 
@@ -52,8 +60,16 @@ class App extends Component {
       }
 
       if (this.state.reformat_gender) {
-        k = k.replace(/ Male$/, ";M")
-        k = k.replace(/ Female/, ";F")
+        gender = gender === 'Male'
+          ? ';M'
+          : ';F'
+      }
+      else if (gender) {
+        gender = " " + gender
+      }
+
+      if (gender) {
+        k = k + gender
       }
 
       return {
